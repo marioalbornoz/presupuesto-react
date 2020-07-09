@@ -17,7 +17,7 @@ const Pregunta = () => {
       e.preventDefault();
 
       // Validar
-      if(cantidad < 1 || cantidad === NaN) {
+      if(cantidad < 1 || cantidad.isNaN()) {
         setError(true);
         return;
       }
