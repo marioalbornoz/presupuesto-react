@@ -6,24 +6,27 @@ function App() {
   // Definir el state
   const [presupuesto, guardarPresupuesto] = useState(0);
   const [restante, guardarRestante] = useState(0);
+  const [mostrarpregunta, guardarPregunta] = useState(true);
 
   return (
     <div className="container">
       <header className="App-header">
         <h1>Presupuesto Semanal</h1>
         <div className="contenido-principal contenido">
-          <Pregunta 
-            guardarPresupuesto = {guardarPresupuesto}
-            guardarRestante = {guardarRestante}
-          />
-          <div className="row">
-            <div className="one-half column">
-              <Formulario />
+          {mostrarpregunta ? (
+            <Pregunta
+              guardarPresupuesto={guardarPresupuesto}
+              guardarRestante={guardarRestante}
+              guardarPregunta={guardarPregunta}
+            />
+          ) : (
+            <div className="row">
+              <div className="one-half column">
+                <Formulario />
+              </div>
+              <div className="one-half column">2</div>
             </div>
-            <div className="one-half column">
-              2
-            </div>
-          </div>
+          )}
         </div>
       </header>
     </div>
