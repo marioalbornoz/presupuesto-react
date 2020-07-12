@@ -1,31 +1,50 @@
 import React, { useState } from 'react';
+import Error from './Error';
+import shortid from 'shortid';
 
-const Formulario = () => {
+const Formulario = ({agregarNuevoGasto}) => {
 
     // Definir state de nombre del gasto
     const [nombre, guardarNombre ] = useState('');
+    // State de la cantidad ingresada
+    const [cantidad, guardarCantidad ] = useState(0);
+
+    const [ error, guardarError] = useState(false);
 
 
     //Guardar gastos
     const agregarGastos = e => {
         e.preventDefault();
-        console.log("guardando gastos");
 
         // Validar
-
+        if(cantidad < 1 || isNaN(cantidad) || nombre.trim()===''){
+          guardarError(true);
+          return;
+        }
+        guardarError(false);
         // Construir gasto
-
+        const gasto = {
+          nombre,
+          cantidad,
+          id: shortid.generate(),
+        };
         // Pasar el gasto al componente principal
+        agregarNuevoGasto(gasto);
         
         // Resetear el formulario
+        guardarNombre('');
+        guardarCantidad(0);
     }
 
-    const [cantidad, guardarCantidad ] = useState(0)
     return (
       <form
         onSubmit = {agregarGastos}
       >
         <h2>Agrega aqui tus gastos</h2>
+        {error ? (<Error 
+          mensaje="Error, Verifique que haya llenado correctamente los campos"  
+        />) : null
+        }
         <div className="campo">
           <label>Nombre Gasto</label>
           <input
@@ -34,7 +53,6 @@ const Formulario = () => {
             placeholder="Ej. Transporte"
             value={nombre}
             onChange={(e) => guardarNombre(e.target.value)}
-            
           />
         </div>
         <div className="campo">
