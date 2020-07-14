@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Pregunta from './components/Pregunta';
 import Formulario from './components/Formulario';
+import Listado from './components/Listado';
+import ControlPresupuesto from './components/ControlPresupuesto';
 
 function App() {
   // Definir el state
@@ -14,9 +16,6 @@ function App() {
     guardarGasto([...gastos, gasto]);
   };
 
-
-  console.log(restante);
-  console.log(presupuesto);
   return (
     <div className="container">
       <header className="App-header">
@@ -35,7 +34,15 @@ function App() {
                   agregarNuevoGasto = {agregarNuevoGasto}
                 />
               </div>
-              <div className="one-half column">2</div>
+              <div className="one-half column">
+                <Listado 
+                  gastos = {gastos}
+                />
+                <ControlPresupuesto 
+                  presupuesto = {presupuesto}
+                  restante = { restante }
+                />
+              </div>
             </div>
           )}
         </div>
