@@ -26,7 +26,7 @@ function App() {
       // Resetea a false el state que ejecuta el componente Gasto
       guardarCrearGasto(false);
     }
-  }, [gasto]);
+  }, [gasto, creargasto,gastos, restante]);
 
   return (
     <div className="container">
