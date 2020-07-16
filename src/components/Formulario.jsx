@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error';
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 
 const Formulario = ({agregarGasto,guardarCrearGasto}) => {
 
@@ -73,6 +74,11 @@ const Formulario = ({agregarGasto,guardarCrearGasto}) => {
         />
       </form>
     );
+}
+
+Formulario.propTypes = {
+  agregarGasto: PropTypes.func.isRequired,
+  guardarCrearGasto: PropTypes.func.isRequired
 }
  
 export default Formulario;
